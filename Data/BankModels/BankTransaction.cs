@@ -7,7 +7,7 @@ public partial class BankTransaction
 {
     public int Id { get; set; }
 
-    public int AccountId { get; set; }
+    public int? AccountId { get; set; }
 
     public int TransactionType { get; set; }
 
@@ -17,7 +17,7 @@ public partial class BankTransaction
 
     public DateTime RegDate { get; set; }
 
-    public virtual Account Account { get; set; } = null!;
+    public virtual Account? Account { get; set; }
 
     public virtual TransactionType TransactionTypeNavigation { get; set; } = null!;
 }

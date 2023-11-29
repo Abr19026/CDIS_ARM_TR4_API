@@ -111,8 +111,8 @@ public partial class BankContext : DbContext
 
             entity.HasOne(d => d.Account).WithMany(p => p.BankTransactions)
                 .HasForeignKey(d => d.AccountId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__BankTrans__Accou__571DF1D5");
+                .OnDelete(DeleteBehavior.SetNull)
+                .HasConstraintName("PK_BankTransaction_AccountID");
 
             entity.HasOne(d => d.TransactionTypeNavigation).WithMany(p => p.BankTransactions)
                 .HasForeignKey(d => d.TransactionType)
