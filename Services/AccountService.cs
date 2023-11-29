@@ -28,6 +28,11 @@ public class AccountService
 		return await _context.Accounts.FindAsync(id);
 	}
 
+	public async Task<IEnumerable<AccountDTOout>> GetByclient(int clientID)
+	{
+		return await _context.Accounts.Where(x => x.ClientId == clientID).Select(AccountToDto).ToListAsync();
+	}
+
 	public async Task<AccountDTOout?> GetDtoById(int id)
 	{
 		return await _context
@@ -72,13 +77,13 @@ public class AccountService
 	}
 
 	public Expression<Func<Account, AccountDTOout>> AccountToDto = (account) => new AccountDTOout
-		{	
-			Id = account.Id,
-			AccountName = account.AccountTypeNavigation.Name,
-			ClientName = account.Client != null ? account.Client.Name : "",
-			Balance = account.Balance,
-			RegDate = account.RegDate,
-		};
+	{	
+		Id = account.Id,
+		AccountName = account.AccountTypeNavigation.Name,
+		ClientName = account.Client != null ? account.Client.Name : "",
+		Balance = account.Balance,
+		RegDate = account.RegDate,
+	};
 
 
 }

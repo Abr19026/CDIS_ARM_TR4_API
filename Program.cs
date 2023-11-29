@@ -18,6 +18,8 @@ builder.Services.AddScoped<ClientService>();
 builder.Services.AddScoped<AccountTypeService>();
 builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<LoginService>();
+
+// Autentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 	.AddJwtBearer(options => {
 		options.TokenValidationParameters = new TokenValidationParameters
@@ -31,7 +33,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 // Políticas de autorización
 builder.Services.AddAuthorization(options =>
-		options.AddPolicy("SuperAdmin", policy => policy.RequireClaim("AdminType", "Super")) // solo da superadmin si AdminType == Super
+		{
+			options.AddPolicy("Admin", policy => policy.RequireClaim("AdminType")); // solo da superadmin si AdminType == Super
+			options.AddPolicy("SuperAdmin", policy => policy.RequireClaim("AdminType", "Super")); // solo da superadmin si AdminType == Super
+		}
 	);
 
 var app = builder.Build();

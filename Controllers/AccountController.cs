@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BankAPI.Controllers;
 
-[Authorize]
+[Authorize("Admin")]
 [ApiController]
 [Route("[controller]")]
 public class AccountController : ControllerBase
@@ -96,7 +96,7 @@ public class AccountController : ControllerBase
 		}
 		return AccountNotFound(id);
 	}
-	
+
 	// Mensaje personalizado de error
 	public NotFoundObjectResult AccountNotFound(int id)
 	{

@@ -118,17 +118,17 @@ SELECT * FROM TransactionType;
 USE Bank;
 INSERT INTO Account (AccountType, ClientID, Balance)
 VALUES  -- Ana
-        (1, 4, 5000), -- Personal
-        (2, 4, 10000), -- Nómina
+        (1, 1, 5000), -- Personal
+        (2, 1, 10000), -- Nómina
         -- Raúl
-        (1, 5, 3000), -- Personal
-        (2, 5, 14000) -- Nómina
+        (1, 2, 3000), -- Personal
+        (2, 2, 14000) -- Nómina
 
 INSERT INTO BankTransaction(AccountID, TransactionType, Amount, ExternalAccount)
-VALUES  (1,1,100,NULL),
-        (1,3,200,123213),
-        (3,1,100,NULL),
-        (3,3,250,5423423)
+VALUES  (4,1,100,NULL),
+        (4,3,200,123213),
+        (5,1,100,NULL),
+        (5,3,250,5423423)
 
 SELECT * FROM Account
 SELECT * FROM BankTransaction
@@ -184,7 +184,7 @@ AS
 GO
 */
 
--- EXEC SelectAccount @ClientID = 4
+-- EXEC SelectAccount @ClientID = 2
 
 /*
 USE BANK;
@@ -258,7 +258,8 @@ SELECT * FROM Client;
 EXEC SelectAccount;
 */
 
-/* USE Bank;
+/*
+USE Bank;
 GO
 
 CREATE PROCEDURE InsertBankTransaction
@@ -297,7 +298,8 @@ AS
         COMMIT TRANSACTION
     ELSE
         ROLLBACK
-GO */
+GO
+*/
 
 /* -- Prueba 1. retiro de 1000 a la cuenta 1
 EXEC SelectAccount
@@ -316,7 +318,8 @@ EXECUTE InsertBankTransaction
 
 Exec SelectAccount */
 
-/* USE Bank;
+/*
+USE Bank;
 
 GO
 
@@ -390,7 +393,8 @@ AS
         PRINT 'No hay saldo suficiente para completar la transacción'
 		RETURN 1
     END
-GO */
+GO 
+/
 
 /*
 -- Probando SelectClient

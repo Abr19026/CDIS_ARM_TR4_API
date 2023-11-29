@@ -1,4 +1,6 @@
-﻿using BankAPI.Data.BankModels;
+﻿using System;
+using System.Collections.Generic;
+using BankAPI.Data.BankModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace BankAPI.Data;
@@ -31,7 +33,7 @@ public partial class BankContext : DbContext
     {
         modelBuilder.Entity<Account>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Account__3214EC27D8C25D65");
+            entity.HasKey(e => e.Id).HasName("PK__Account__3214EC2777DD2E48");
 
             entity.ToTable("Account");
 
@@ -54,7 +56,7 @@ public partial class BankContext : DbContext
 
         modelBuilder.Entity<AccountType>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__AccountT__3214EC27D2A0C83D");
+            entity.HasKey(e => e.Id).HasName("PK__AccountT__3214EC272A45DE16");
 
             entity.ToTable("AccountType");
 
@@ -69,7 +71,7 @@ public partial class BankContext : DbContext
 
         modelBuilder.Entity<Administrator>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Administ__3214EC27A5859C3B");
+            entity.HasKey(e => e.Id).HasName("PK__Administ__3214EC2728746E96");
 
             entity.ToTable("Administrator");
 
@@ -96,7 +98,7 @@ public partial class BankContext : DbContext
 
         modelBuilder.Entity<BankTransaction>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__BankTran__3214EC27117B0E34");
+            entity.HasKey(e => e.Id).HasName("PK__BankTran__3214EC2716251189");
 
             entity.ToTable("BankTransaction");
 
@@ -120,7 +122,7 @@ public partial class BankContext : DbContext
 
         modelBuilder.Entity<Client>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Client__3214EC2759E1487F");
+            entity.HasKey(e => e.Id).HasName("PK__Client__3214EC27EA524BC7");
 
             entity.ToTable("Client", tb =>
                 {
@@ -138,6 +140,9 @@ public partial class BankContext : DbContext
             entity.Property(e => e.PhoneNumber)
                 .HasMaxLength(40)
                 .IsUnicode(false);
+            entity.Property(e => e.Pwd)
+                .HasMaxLength(40)
+                .IsUnicode(false);
             entity.Property(e => e.RegDate)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
@@ -145,7 +150,7 @@ public partial class BankContext : DbContext
 
         modelBuilder.Entity<TransactionType>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Transact__3214EC2721A99F55");
+            entity.HasKey(e => e.Id).HasName("PK__Transact__3214EC273707EB10");
 
             entity.ToTable("TransactionType");
 

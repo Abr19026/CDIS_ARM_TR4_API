@@ -10,19 +10,23 @@ namespace BankAPI.Controllers;
 public class ClientController : ControllerBase
 {
 	private readonly ClientService _service;
+	private AccountService _accounts;
 
-	public ClientController(ClientService clientService)
+	public ClientController(ClientService clientService, AccountService accountService)
 	{
 		_service = clientService;
+		_accounts = accountService;
 	}
 
 	[HttpGet]
+	[Authorize(Policy = "Admin")]
 	async public Task<IEnumerable<Client>> Get()
 	{
 		return await _service.GetAll();
 	}
 
 	[HttpGet("{id}")]
+	[Authorize(Policy = "Admin")]
 	async public Task<ActionResult<Client>> GetById(int id)
 	{
 		var client = await _service.GetById(id);
@@ -31,6 +35,7 @@ public class ClientController : ControllerBase
 		}
 		return client;
 	}
+
 
 	// TODO: No debe aceptar ID ni RegDate
 	[HttpPost]
